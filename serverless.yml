@@ -1,0 +1,50 @@
+service: express-serverless
+provider:
+  name: aws
+  runtime: nodejs12.x
+  region: eu-west-1
+  stage: ${env:NODE_ENV}
+  environment:
+    NODE_ENV: ${env:NODE_ENV}
+  iamRoleStatements:
+    - Effect: 'Allow'
+      Action:
+        - 'secretsmanager:GetSecretValue'
+      Resource:
+        - '*'
+
+package:
+  exclude:
+    - node_modules/**
+    - defer" defer" defer" defer" defer" defer" defer" defer" defer" defer" defer" defer" defer" src/**
+
+layers:
+  nodeModules:
+    path: layer
+    compatibleRuntimes:
+      - nodejs12.x
+
+functions:
+  app:
+    handler: dist/app.handler
+    layers:
+      - {Ref: NodeModulesLambdaLayer}
+    events:
+      - http:
+          path: /api
+          method: ANY
+          cors: true
+      - http:
+          path: /api/{proxy+}
+          method: ANY
+          cors: true
+    vpc:
+      securityGroupIds:
+        - {Ref: LambdaSecurityGroup}
+      subnetIds:
+        - "subnet-1"
+        - "subnet-2"
+        - "subnet-3"
+
+plugins:
+  - serverless-offline
