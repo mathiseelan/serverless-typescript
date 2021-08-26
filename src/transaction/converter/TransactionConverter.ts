@@ -16,6 +16,7 @@ export class TransactionConverter{
     static toDtoList(val: TransactionModel[]): TransactionDto[] {
         return val.map(element =>  {
             return {
+                id: element.id,
                 total: element.total,
                 date: element.date,
                 discount: element.discount,
