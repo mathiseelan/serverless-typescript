@@ -35,13 +35,6 @@ Run the following command to emulate locally AWS Lambda and API Gateway:
     
 Keep in mind that all the API has `/{NODE_ENV}/api` as root prefix
 
-## Serverless file
-
-[Serverless framework](https://github.com/serverless/serverless) comes in our help to easily manage our cloud infrastructure.
-
-Thanks to the configuration defined in the serverless.yml file, we are going to create an API Gateway with single resource which proxies the API calls to the proper Express route.
-
-
 ## AWS configuration
 
 Please be sure to have installed AWS CLI and configured it with your credentials.
