@@ -7,7 +7,6 @@ It is written in TypeScript to obtain all the advantages with respect to vanilla
 
 In this project we will use ```tsoa``` to register our Express routes and to obtain validation without using boilerplate code.
 
-As all good CRUD services, we need a data source to manage our data.
 To manage database object we are going to use Sequelize as ORM.
 
 ## Project setup
@@ -35,12 +34,18 @@ Run the following command to emulate locally AWS Lambda and API Gateway:
     
 Keep in mind that all the API has `/{NODE_ENV}/api` as root prefix
 
+## test cases
+
+Need to pass the URL to test as a environment variable
+
+    URL='http://localhost:3000' npm run test
+
 ## AWS configuration
 
 Please be sure to have installed AWS CLI and configured it with your credentials.
 
-This example project uses Aurora Serverless as RDBMS and a Secret Manager where credentials are stored.
-
 To create/update the Serverless infrastructure on your account, run the command:
 
     npm run deploy-dev
+
+## Need to use node version 12, otherwise post endpoint wont work
